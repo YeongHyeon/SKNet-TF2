@@ -1,4 +1,4 @@
-import os, warnings, argparse
+import os, inspect, warnings, argparse
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 os.environ["CUDA_VISIBLE_DEVICES"]='0'
 warnings.filterwarnings('ignore')
@@ -9,6 +9,9 @@ import source.datamanager as dman
 import source.neuralnet as nn
 import source.tf_process as tfp
 
+PACK_PATH = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+CKPT_DIR = PACK_PATH+'/Checkpoint'
+
 def main():
 
     try:
@@ -18,7 +21,7 @@ def main():
 
     dataset = dman.Dataset(normalize=FLAGS.datnorm)
     neuralnet = nn.CNN(height=dataset.height, width=dataset.width, channel=dataset.channel, \
-        num_class=dataset.num_class, leaning_rate=FLAGS.lr, ckpt_dir='./Checkpoint')
+        num_class=dataset.num_class, leaning_rate=FLAGS.lr, ckpt_dir=CKPT_DIR)
 
     tfp.training(neuralnet=neuralnet, dataset=dataset, epochs=FLAGS.epoch, batch_size=FLAGS.batch, normalize=True)
     tfp.test(neuralnet=neuralnet, dataset=dataset, batch_size=FLAGS.batch)

@@ -3,14 +3,14 @@
 
 ## Concept
 <div align="center">
-  <img src="./figures/sknet.png" width="600">  
+  <img src="./figures/sknet.png" width="800">  
   <p>The concept of SKNet [1].</p>
 </div>
 
 ## Performance
 
 |Indicator|Value|
-|:---|:---:|:---:|
+|:---|:---:|
 |Accuracy|0.00000|
 |Precision|0.00000|
 |Recall|0.00000|
